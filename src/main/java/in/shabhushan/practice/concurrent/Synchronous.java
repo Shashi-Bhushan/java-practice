@@ -18,13 +18,13 @@
  * @author Shashi Bhushan
  * @date Sep 17, 2019
  */
-package in.shabhushan.practice.callback;
+package in.shabhushan.practice.concurrent;
 
-interface EventListener2 {
+interface EventListener {
     void listen();
 }
 
-class EventListenerImpl2 implements EventListener2 {
+class EventListenerImpl implements EventListener {
 
     @Override
     public void listen() {
@@ -39,11 +39,11 @@ class EventListenerImpl2 implements EventListener2 {
     }
 }
 
-class EventCaller2 {
-    private EventListener2 listener;
+class EventCaller {
+    private EventListener listener;
 
 
-    public void registerListener(EventListener2 listener) {
+    public void registerListener(EventListener listener) {
         this.listener = listener;
     }
 
@@ -51,21 +51,15 @@ class EventCaller2 {
         System.out.println("Performing Callback before Synchronous call.");
 
         if(null != this.listener)
-            // Thread could be implemented by Listener as well.
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    listener.listen();
-                }
-            }).start();
+            this.listener.listen();
     }
 }
 
-public class Asynchronous {
+public class Synchronous {
     public static void main(String[] args) {
-        EventCaller2 caller = new EventCaller2();
+        EventCaller caller = new EventCaller();
 
-        EventListener2 listener = new EventListenerImpl2();
+        EventListener listener = new EventListenerImpl();
         caller.registerListener(listener);
 
         long startTime = System.currentTimeMillis();
