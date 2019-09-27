@@ -20,6 +20,8 @@
  */
 package in.shabhushan.practice.geeks;
 
+import java.util.List;
+
 interface Parent {
     int x = 0;
 }
@@ -34,11 +36,17 @@ class Child implements Parent, SecondParent {
     }
 }
 
-public class MethodAmbiguity {
+class MethodAmbiguityParent {
+    public void parentMethod() {
+        System.out.println("Method Ambiguity Parent Class : Parent Method");
+    }
+}
 
-    /////////////////////////////////////////////
-    // Overloaded Methods with Subclass Arguments
-    /////////////////////////////////////////////
+public class MethodAmbiguity extends MethodAmbiguityParent {
+
+    ////////////////////////////////////////////////
+    // 1. Overloaded Methods with Subclass Arguments
+    ////////////////////////////////////////////////
     public static void overloadedMethodOne(Object one) {
         System.out.println("Overloaded Method One with Object.");
     }
@@ -47,9 +55,9 @@ public class MethodAmbiguity {
         System.out.println("Overloaded Method One with String.");
     }
 
-    ///////////////////////////////////////////////
-    // Overloaded Methods with Same Level Arguments
-    ///////////////////////////////////////////////
+    //////////////////////////////////////////////////
+    // 2. Overloaded Methods with Same Level Arguments
+    //////////////////////////////////////////////////
     public static void overloadedMethodTwo(String one) {
         System.out.println("Overloaded Method Two with String.");
     }
@@ -58,14 +66,46 @@ public class MethodAmbiguity {
         System.out.println("Overloaded Method Two with String Builder.");
     }
 
-    ///////////////////////////////////////////////////////
-    // Overloaded Methods with Different Order of Arguments
-    ///////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////
+    // 3. Overloaded Methods with Different Order of Arguments
+    //////////////////////////////////////////////////////////
     public static void overloadedMethodThree(Object one, String two) {
         System.out.println("Overloaded Method Three with Object and String.");
     }
 
     public static void overloadedMethodThree(String one, Object two) {
         System.out.println("Overloaded Method Three with String and Object.");
+    }
+
+    ////////////////////////////////////////
+    // 4. Is this Method Overloading Valid ?
+    ////////////////////////////////////////
+    /*
+    public static void f() { }
+    public static String f() { return null; }
+    */
+
+    ////////////////////////////////////////
+    // 5. Is this Method Overloading Valid ?
+    ////////////////////////////////////////
+    /*
+    public static List f(List list) { return null; }
+    public static List<String> f(List<String> list) { return null; }
+    */
+
+    ///////////////////////////////////////
+    // 6. Is this Method Overriding Valid ?
+    ///////////////////////////////////////
+    /*
+    public String parentMethod() {
+        System.out.println("Method Ambiguity Class : Parent Method");
+    }
+    */
+
+    //////////////////////////////////
+    // 7. What will the Method print ?
+    //////////////////////////////////
+    public static void callX() {
+        Child.printX();
     }
 }
