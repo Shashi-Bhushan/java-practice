@@ -25,12 +25,14 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 public class EmployeeTest {
 
     @Test
-    public void testEquals() {
+    public void testEquivalence_ForHashMap() {
         Map<Employee, String> map = new HashMap<>();;
 
         // Set Employee with Name Shashi
@@ -68,11 +70,40 @@ public class EmployeeTest {
     }
 
     @Test
-    public void testAfterMutatingDS() {
+    public void testEquivalence_ForHashSet() {
+        Set<Employee> set = new HashSet<>();
+
+        // Set Employee with Name Shashi
+        Employee emp = new Employee();
+        emp.setEmpId(1);
+        emp.setEmpName("Shashi");
+
+        // Add to Map
+        set.add(emp);
+
+        // Modify The Original Employee object
+        emp.setEmpName("Shashi Bhushan");
+        //map.put(emp, "Modified Shashi");
+
+        Assert.assertFalse(set.contains(emp));
+
         Employee similarEmployee = new Employee();
         similarEmployee.setEmpId(1);
         similarEmployee.setEmpName("Shashi");
 
-        //final String s = map.get(similarEmployee);
+        // This is False
+        Assert.assertFalse(set.contains(similarEmployee));
+
+        Employee anotherSimilarEmployee = new Employee();
+        anotherSimilarEmployee.setEmpId(1);
+        anotherSimilarEmployee.setEmpName("Shashi Bhushan");
+
+        // This is also False
+        Assert.assertFalse(set.contains(anotherSimilarEmployee));
+
+        // Now, if I keep the same name as before, i could again fetch using the new created object as well.
+        // Since, this new object will be equivalent to the old object.
+        emp.setEmpName("Shashi");
+        Assert.assertTrue(set.contains(similarEmployee));
     }
  }
