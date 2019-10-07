@@ -27,11 +27,10 @@ public abstract class AbstractClass {
     ////////////////////////////////////
     // 1. are both the functions valid ?
     ////////////////////////////////////
-    /*
-    public static final String finalMethod() {
-        return "Final Method";
-    }
 
-    public static final abstract String anotherFinalMethod();
-    */
+    //public static abstract String anotherFinalMethod();
+
+
+
+    // HASH MAP
 }

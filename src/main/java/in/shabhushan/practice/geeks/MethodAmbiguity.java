@@ -23,7 +23,7 @@ package in.shabhushan.practice.geeks;
 import java.util.List;
 
 interface Parent {
-    int x = 0;
+    public static final int x = 0;
 }
 
 interface SecondParent {
@@ -32,7 +32,7 @@ interface SecondParent {
 
 class Child implements Parent, SecondParent {
     public static void printX() {
-        //System.out.println("Value of x is " + x);
+        System.out.println("Value of x is " + Parent.x);
     }
 }
 
