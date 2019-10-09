@@ -43,30 +43,35 @@ public class EmployeeTest {
         // Add to Map
         map.put(emp, emp.getEmpName());
 
-        // Modify The Original Employee object
+        // Modify The Original Employee object's Name
         emp.setEmpName("Shashi Bhushan");
-        //map.put(emp, "Modified Shashi");
 
+        // This object does not exist as key in map now
         Assert.assertFalse(map.containsKey(emp));
 
+        // Create object with same name(used when creating)
         Employee similarEmployee = new Employee();
         similarEmployee.setEmpId(1);
         similarEmployee.setEmpName("Shashi");
 
-        // This is False
+        // Hashcode check will pass, equals will fail
         Assert.assertFalse(map.containsKey(similarEmployee));
+        Assert.assertNull(map.get(similarEmployee));
 
+        // Create object with same name(modified name)
         Employee anotherSimilarEmployee = new Employee();
         anotherSimilarEmployee.setEmpId(1);
         anotherSimilarEmployee.setEmpName("Shashi Bhushan");
 
-        // This is also False
+        // Hashcode check will fail
         Assert.assertFalse(map.containsKey(anotherSimilarEmployee));
+        Assert.assertNull(map.get(anotherSimilarEmployee));
 
-        // Now, if I keep the same name as before, i could again fetch using the new created object as well.
-        // Since, this new object will be equivalent to the old object.
+        // Now, if I roll back the name, i could again fetch using the new created object as well.
+        // Since now this new object will be equivalent to the old object.
         emp.setEmpName("Shashi");
         Assert.assertTrue(map.containsKey(similarEmployee));
+        Assert.assertNotNull(map.get(similarEmployee));
     }
 
     @Test

@@ -35,6 +35,14 @@ import java.util.Objects;
  *
  * Now, if i change the map's object to it's original value back, I could get the object back using a new object as well.
  * Since, this new object will now pass both the checks.
+ *
+ * There could be multiple solutions for this problem of being able to fetch objects in map.
+ * 1. make immutable Employee object. Only provide all values in Constructor
+ *   1.1. If flexibility is needed, use Builder pattern
+ * 2. Use only required fields in equals and hashcode, empId in this case.
+ *
+ * @see <a href="https://stackoverflow.com/questions/58299084/is-there-a-way-to-manually-rehash-map-in-java">
+ *     Stack Overflow discussion</a>
  */
 public class Employee {
 
