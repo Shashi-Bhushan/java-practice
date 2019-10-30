@@ -1,6 +1,5 @@
-package in.shabhushan.practice.dsalgopython.recursionandbacktracking;
+package in.shabhushan.practice.dsalgowithpython.recursionandbacktracking;
 
-import in.shabhushan.practice.dsalgowithpython.recursionandbacktracking.BinaryString;
 import org.junit.Assert;
 import org.junit.Test;
 
